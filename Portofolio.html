@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A & T RHYTHM </title>
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, #ff1744 0%, transparent 70%);
+            opacity: 0.1;
+            animation: pulse 4s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.1; }
+            50% { transform: scale(1.2); opacity: 0.2; }
+            100% { transform: scale(1); opacity: 0.1; }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #ff1744;
+            margin-bottom: 2rem;
+        }
+
+        .sound-wave {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            justify-content: center;
+            height: 50px;
+            margin: 2rem 0;
+        }
+
+        .bar {
+            width: 3px;
+            background-color: #ff1744;
+            animation: soundWave 1s infinite;
+        }
+
+        @keyframes soundWave {
+            0% { height: 5px; }
+            50% { height: 40px; }
+            100% { height: 5px; }
+        }
+
+        .team {
+            padding: 5rem 2rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .team-member {
+            background: rgba(255,23,68,0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .member-name {
+            font-size: 2rem;
+            color: #ff1744;
+            margin-bottom: 1rem;
+        }
+
+        .member-role {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #ccc;
+        }
+
+        .member-bio {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .quote-section {
+            padding: 5rem 2rem;
+            text-align: center;
+            background: linear-gradient(45deg, #000, #1a1a1a);
+        }
+
+        .quote {
+            font-size: 2rem;
+            font-style: italic;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .music-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            background: #ff1744;
+            border-radius: 50%;
+            animation: float 20s infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-1000px) rotate(720deg); }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--darker-bg);
+            min-height: 200vh;
+        }
+
+        .navbar {
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.4s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar.scrolled {
+            padding: 0.8rem 2rem;
+            background: rgba(18, 18, 18, 0.95);
+            border-bottom: 1px solid var(--primary-dark);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover::after {
+            transform: scaleX(1);
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1001;
+        }
+
+        .nav-toggle span {
+            width: 28px;
+            height: 2px;
+            background: var(--gradient);
+            margin: 2px 0;
+            transition: all 0.4s ease;
+            border-radius: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links li {
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .nav-links li a {
+            color: var(--gray-text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            position: relative;
+            display: inline-block;
+        }
+
+        .nav-links li a:hover {
+            color: var(--light-text);
+            transform: translateY(-2px);
+        }
+
+        .nav-links li a::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+        }
+
+        .nav-links li a:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .nav-links li.active a {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .nav-links li.active a::before {
+            transform: scaleX(1);
+        }
+
+        /* Dropdown styles */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            left: -20px;
+            background: rgba(26, 26, 26, 0.95);
+            min-width: 180px;
+            padding: 1rem 0;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(10px);
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 0.7rem 1.5rem !important;
+            color: var(--gray-text);
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background: rgba(255, 0, 54, 0.1);
+            color: var(--primary) !important;
+            transform: translateX(5px) !important;
+        }
+
+        /* Search bar */
+        .search-container {
+            position: relative;
+            margin-left: 2rem;
+        }
+
+        .search-input {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            color: var(--light-text);
+            width: 200px;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+            width: 250px;
+            box-shadow: 0 0 15px rgba(255, 0, 54, 0.3);
+        }
+
+        @media (max-width: 1024px) {
+            .search-container {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 80%;
+                max-width: 400px;
+                background: rgba(26, 26, 26, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 5rem 2rem;
+                gap: 2rem;
+                transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+                border-left: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .dropdown-content {
+                position: static;
+                background: rgba(0, 0, 0, 0.3);
+                border-radius: 4px;
+                margin-top: 1rem;
+                transform: none;
+                padding: 0.5rem 0;
+            }
+
+            .nav-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .nav-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .nav-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+        }
+        body, html {
+            background-color: black;
+            color: white;
+            overflow-x: hidden;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #ef4444, black);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color: transparent;
+        }
+        .particle-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.1;
+            background: 
+                radial-gradient(circle at center, rgba(220,38,38,0.05) 0%, rgba(0,0,0,0.02) 70%),
+                repeating-linear-gradient(
+                    45deg,
+                    rgba(182, 27, 27, 0.01),
+                    rgba(0,0,0,0.02) 1px,
+                    transparent 2px,
+                    transparent 4px
+                );
+        }
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: scale(1.05);
+            background: linear-gradient(to bottom right, #ef4444, black);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary-red: #ff0033;
+            --secondary-red: #ff1a1a;
+            --dark-bg: #0a0a0a;
+            --darker-bg: #050505;
+            --glow-shadow: 0 0 15px rgba(255, 0, 51, 0.5);
+        }
+
+        /* Custom Properties */
+        @property --angle {
+            syntax: '<angle>';
+            initial-value: 0deg;
+            inherits: false;
+        }
+
+        /* Keyframe Animations */
+        @keyframes rotate {
+            to {
+                --angle: 360deg;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Main Footer Styles */
+        .footer {
+            background: linear-gradient(
+                45deg,
+                var(--darker-bg),
+                var(--dark-bg),
+                #150505,
+                var(--dark-bg),
+                var(--darker-bg)
+            );
+            background-size: 400% 400%;
+            animation: gradientMove 15s ease infinite;
+            color: #fff;
+            padding: 4rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+            min-height: 500px;
+        }
+
+        /* Animated Background Elements */
+        .footer::before,
+        .footer::after {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            z-index: 0;
+            background: radial-gradient(
+                circle,
+                transparent 0%,
+                rgba(255, 0, 51, 0.03) 30%,
+                transparent 70%
+            );
+            animation: rotate 30s linear infinite;
+        }
+
+        .footer::after {
+            animation-direction: reverse;
+            animation-duration: 45s;
+        }
+
+        /* Particle Effect */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: rgba(255, 0, 51, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* Container Styles */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Top Border Effect */
+        .footer-border {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                var(--primary-red),
+                var(--secondary-red),
+                var(--primary-red),
+                transparent
+            );
+            background-size: 200% auto;
+            animation: gradientMove 3s linear infinite;
+        }
+
+        /* Logo Section */
+        .logo-container {
+            position: relative;
+            display: inline-block;
+            padding: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 2.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            text-shadow: 0 0 15px rgba(255, 0, 51, 0.7);
+        }
+
+        .logo-icon {
+            color: var(--primary-red);
+            filter: drop-shadow(0 0 10px rgba(255, 0, 51, 0.5));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Social Icons */
+        .social-icons {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .social-icon {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(5px);
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px) scale(1.1);
+            background: rgba(255, 0, 51, 0.1);
+            box-shadow: var(--glow-shadow);
+        }
+
+        .social-icon i {
+            font-size: 1.8rem;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover i {
+            color: var(--primary-red);
+            animation: pulse 1s infinite;
+        }
+
+        /* Grid Layout */
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin: 4rem 0;
+        }
+
+        .footer-section {
+            position: relative;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transform-style: preserve-3d;
+            transition: all 0.5s ease;
+        }
+
+        .footer-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            padding: 2px;
+            background: linear-gradient(
+                var(--angle),
+                transparent,
+                var(--primary-red),
+                transparent
+            );
+            mask: linear-gradient(#fff 0 0) content-box,
+                  linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            animation: rotate 3s linear infinite;
+        }
+
+        .footer-section:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Section Headers */
+        .section-header {
+            color: var(--primary-red);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-red), transparent);
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        .footer-section:hover .section-header::after {
+            width: 100px;
+        }
+
+        /* Contact Items */
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px) scale(1.02);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: var(--glow-shadow);
+        }
+
+        .contact-item i {
+            color: var(--primary-red);
+            font-size: 1.2rem;
+            padding: 10px;
+            border-radius: 50%;
+            background: rgba(255, 0, 51, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover i {
+            transform: rotate(360deg);
+            background: rgba(255, 0, 51, 0.2);
+        }
+
+        /* Studio Hours */
+        .hours-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            transition: all 0.3s ease;
+        }
+
+        .hours-item:hover {
+            transform: translateX(10px);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: var(--glow-shadow);
+        }
+
+        /* Footer Bottom */
+        .footer-bottom {
+            position: relative;
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .footer-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary-red);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--primary-red);
+        }
+
+        .footer-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .social-icons {
+                gap: 15px;
+            }
+
+            .social-icon {
+                width: 50px;
+                height: 50px;
+            }
+
+            .footer-section {
+                padding: 20px;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+            background: var(--darker-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-red);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-red);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="#" class="logo">A&T RHYTHM</a>
+           <br>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+    
+            <ul class="nav-links">
+                <li class="active"><a href="Home.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="Services.html">Services</a>
+                    <div class="dropdown-content">
+                        <a href="Services.html">Consulting</a>
+                        <a href="Services.html">Development</a>
+                        <a href="Services.html">Support</a>
+                    </div>
+                </li>
+                <li><a href="#">Portfolio</a></li>
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Search...">
+                </div>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="music-particles" id="particles"></div>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">Dark Harmony Studios</h1>
+            <p class="hero-subtitle">Where Sound Meets Soul</p>
+            <div class="sound-wave">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team" id="team">
+        <div class="team-grid">
+            <div class="team-member">
+                <h2 class="member-name">Adeena</h2>
+                <p class="member-role">Lead Music Producer & Sound Engineer</p>
+                <p class="member-bio">
+                    With a Master's degree in Music Production from Berklee College of Music, 
+                    Adeena brings over a decade of experience in sound engineering and electronic music production. 
+                    Her unique approach to sound design has earned her multiple industry awards and collaborations 
+                    with leading artists worldwide.
+                </p>
+                <p class="member-bio">
+                    Specializations:
+                    • Electronic Music Production
+                    • Sound Design
+                    • Mix Engineering
+                    • Spatial Audio
+                </p>
+            </div>
+
+            <div class="team-member">
+                <h2 class="member-name">Thamindu</h2>
+                <p class="member-role">Music Composer & Audio Director</p>
+                <p class="member-bio">
+                    A graduate from the prestigious Royal College of Music, Thamindu has composed 
+                    scores for multiple award-winning films and games. His expertise in classical 
+                    composition combined with modern production techniques creates unique sonic landscapes 
+                    that push the boundaries of contemporary music.
+                </p>
+                <p class="member-bio">
+                    Specializations:
+                    • Film Scoring
+                    • Orchestral Arrangement
+                    • Game Audio
+                    • Music Theory
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="quote-section">
+        <p class="quote">
+            "Music is the language of the spirit. It opens the secret of life bringing peace, abolishing strife."
+        </p>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-border"></div>
+        <div class="particles" id="particles"></div>
+        
+        <div class="container">
+            <div class="footer-top">
+                <div class="logo-container">
+                    <div class="logo">
+                        <i class="fas fa-music logo-icon"></i>
+                        <span>A&T <span style="color: var(--primary-red)">RHYTHM</span></span>
+                    </div>
+                </div>
+
+                <div class="social-icons">
+                    <img src="https://png.pngtree.com/png-clipart/20190613/original/pngtree-instagram-logo-icon-png-image_3588821.jpg" class="social-icon" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                        
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpV7RsHHN9Ft2Yku-yhGPa3DOtkm2b_MaTpg&s" class="social-icon" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                        
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgNQPYF1PWXVdYOmv88PQkGmbSx6yA7aEuLg&s" class="social-icon" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                        
+                    <img src="https://img.freepik.com/premium-vector/round-youtube-logo-isolated-white-background_469489-983.jpg" class="social-icon" aria-label="YouTube">
+                        <i class="fab fa-youtube"></i>
+                        
+                    <img src="https://cdn3.iconfinder.com/data/icons/social-media-black-white-1/1024/soundcloud-512.png" class="social-icon" aria-label="SoundCloud">
+                        <i class="fab fa-soundcloud"></i>
+                        
+                </div>
+            </div>
+
+            <div class="footer-grid">
+                <div class="footer-section" data-tilt>
+                    <h3 class="section-header">About Studio</h3>
+                    <p>Discover the perfect fusion of art and technology in our state-of-the-art recording facility. 
+                    We're committed to bringing your musical vision to life with unparalleled quality and creativity.</p>
+                </div>
+
+                <div class="footer-section" data-tilt>
+                    <h3 class="section-header">Contact Us</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt">@</i>
+                            <span>RHYTHM residencies,Galle fort</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone">@</i>
+                            <span>(+94) 0771357906</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope">@</i>
+                            <span>A&T_RHYTHM@gmail.com </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-section" data-tilt>
+                    <h3 class="section-header">Studio Hours</h3>
+                    <div class="hours-container">
+                        <div class="hours-item">
+                            <span>Monday - Friday</span>
+                            <span>9:00 AM - 10:00 PM</span>
+                        </div>
+                        <div class="hours-item">
+                            <span>Saturday</span>
+                            <span>10:00 AM - 8:00 PM</span>
+                        </div>
+                        <div class="hours-item">
+                            <span>Sunday</span>
+                            <span>By Appointment</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© <span id="year"></span> A&T RHYTHM. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                    <a href="#" class="footer-link">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Create floating music note particles
+        const particlesContainer = document.getElementById('particles');
+        
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            // Random size between 5 and 15 pixels
+            const size = Math.random() * 10 + 5;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            // Random starting position
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = '100%';
+            
+            // Random animation duration
+            particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
+            
+            particlesContainer.appendChild(particle);
+            
+            // Remove particle after animation
+            setTimeout(() => {
+                particle.remove();
+            }, 20000);
+        }
+
+        // Create new particles periodically
+        setInterval(createParticle, 500);
+
+        // Add animation delay to sound wave bars
+        const bars = document.querySelectorAll('.bar');
+        bars.forEach((bar, index) => {
+            bar.style.animationDelay = `${index * 0.1}s`;
+        });
+        // Update year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+// Particle effect
+function createParticles() {
+    const particles = document.getElementById('particles');
+    const particleCount = 50;
+
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        
+        // Random position
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        
+        // Random size
+        const size = Math.random() * 3;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        
+        // Random animation
+        particle.style.animation = `float ${5 + Math.random() * 10}s linear infinite`;
+        
+        particles.appendChild(particle);
+    }
+}
+
+// 3D Tilt Effect
+class Tilt {
+    constructor(element) {
+        this.element = element;
+        this.initTilt();
+    }
+
+    initTilt() {
+        this.element.addEventListener('mousemove', (e) => {
+            const rect = this.element.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / 20;
+            const rotateY = -(x - centerX) / 20;
+            
+            this.element.style.transform = 
+                `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        });
+
+        this.element.addEventListener('mouseleave', () => {
+            this.element.style.transform = 
+                'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+        });
+    }
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+    createParticles();
+    
+    // Initialize tilt effect on sections
+    document.querySelectorAll('[data-tilt]').forEach(element => {
+        new Tilt(element);
+    });
+
+    // Interactive contact items
+    document.querySelectorAll('.contact-item').forEach(item => {
+        item.addEventListener('mousemove', (e) => {
+            const rect = item.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const shine = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.2), transparent)`;
+            item.style.background = shine;
+        });
+
+        item.addEventListener('mouseleave', () => {
+            item.style.background = 'rgba(255,255,255,0.03)';
+        });
+    });
+});
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const navbar = document.querySelector('.navbar');
+
+    navToggle.addEventListener('click', () => {
+        navToggle.classList.toggle('active');
+        navLinks.classList.toggle('active');
+    });
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) {
+            navToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+        }
+    });
+
+    // Handle dropdown menu touch events for mobile
+    const dropdowns = document.querySelectorAll('.dropdown');
+    dropdowns.forEach(dropdown => {
+        dropdown.addEventListener('touchstart', function(e) {
+            dropdowns.forEach(d => {
+                if (d !== dropdown) d.classList.remove('active');
+            });
+            this.classList.toggle('active');
+            e.preventDefault();
+        });
+    });
+    // Optional: Add some subtle animations
+    function createParticles() {
+        const particleBg = document.querySelector('.particle-bg');
+        
+        for (let i = 0; i < 100; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('absolute', 'bg-red-500', 'opacity-10', 'rounded-full');
+            particle.style.width = `${Math.random() * 5}px`;
+            particle.style.height = particle.style.width;
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = `${Math.random() * 100}%`;
+            particle.style.animation = `float ${Math.random() * 10 + 5}s infinite alternate`;
+            particleBg.appendChild(particle);
+        }
+    }
+
+    // Add dynamic style for floating particles
+    const style = document.createElement('style');
+    style.innerHTML = `
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50px); }
+        }
+    `;
+    document.head.appendChild(style);
+
+    // Initialize particles
+    createParticles();
+    </script>
+</body>
+</html>
